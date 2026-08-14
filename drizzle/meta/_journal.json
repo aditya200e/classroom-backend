@@ -8,6 +8,13 @@
       "when": 1786263366300,
       "tag": "0000_cultured_vampiro",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786698893200,
+      "tag": "0001_sticky_sage",
+      "breakpoints": true
     }
   ]
 }
