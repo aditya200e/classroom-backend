@@ -5,7 +5,7 @@ import {ArcjetNodeRequest, slidingWindow} from "@arcjet/node";
 
 const securityMiddleware = async (req: Request, res: Response, next: NextFunction) => {
 
-    if(process.env.NODE_ENV !== 'test') return next();
+    if(process.env.NODE_ENV === 'test') return next();
 
     try {
 
@@ -32,7 +32,7 @@ const securityMiddleware = async (req: Request, res: Response, next: NextFunctio
                 break;
         }
 
-        const client: aj.withRule(
+        const client = aj.withRule(
             slidingWindow({
                 mode: 'LIVE',
                 interval: '1m',
@@ -59,7 +59,7 @@ const securityMiddleware = async (req: Request, res: Response, next: NextFunctio
 
 
         if (decision.isDenied() && decision.reason.isRateLimit()) {
-            return res.status(403).json({error: 'To many requests', message});
+            return res.status(429).json({error: 'To many requests', message});
         }
 
         next();
