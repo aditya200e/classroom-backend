@@ -32,6 +32,7 @@ const securityMiddleware = async (req: Request, res: Response, next: NextFunctio
                 break;
         }
 
+
         const client = aj.withRule(
             slidingWindow({
                 mode: 'LIVE',
